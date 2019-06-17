@@ -10,17 +10,18 @@ from catalog.models import Author, Genre, Book, BookInstance
 # Register the Admin classes for Book using the decorator
 class BooksInstanceInline(admin.TabularInline):
     model = BookInstance
-    
+
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
-    list_display = ('title', 'author', 'display_genre')
+    list_display = ('title', 'author') 
+    #  I removed 'display_genre' as an argument in list_display
     inlines = [BooksInstanceInline]
 
-    def display_genre(self):
-        """Create a string for the Genre. This is required to display genre in Admin."""
-        return ', '.join(genre.name for genre in self.genre.all()[:3])
+    # def display_genre(self):
+    #     """Create a string for the Genre. This is required to display genre in Admin."""
+    #     return ', '.join(genre.name for genre in self.genre.all()[:3])
     
-    display_genre.short_description = 'Genre'
+    # display_genre.short_description = 'Genre'
 
 
 
