@@ -4,11 +4,13 @@ from django.contrib import admin
 
 from catalog.models import Author, Genre, Book, BookInstance
 
-class BooksInstanceInline(admin.TabularInline):
-    model = BookInstance
+
 # admin.site.register(Book)
 
 # Register the Admin classes for Book using the decorator
+class BooksInstanceInline(admin.TabularInline):
+    model = BookInstance
+    
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
     list_display = ('title', 'author', 'display_genre')
